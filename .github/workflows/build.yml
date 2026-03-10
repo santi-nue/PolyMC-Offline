@@ -44,15 +44,11 @@ jobs:
           submodules: "true"
 
       # We need to do this here because it inexplicably fails if we split the step
-      - name: Download and install OpenSSL libs on Windows
-        if: runner.os == 'Windows'
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install aqtinstall==2.0.5
-          python -m aqt install-tool -O "${{ github.workspace }}\Qt\" windows desktop tools_openssl_x86
-          mkdir ${{ env.INSTALL_DIR }}
-          copy "${{ github.workspace }}\Qt\Tools\OpenSSL\Win_x86\bin\libssl-1_1.dll" "${{ github.workspace }}\${{ env.INSTALL_DIR }}\"
-          copy "${{ github.workspace }}\Qt\Tools\OpenSSL\Win_x86\bin\libcrypto-1_1.dll" "${{ github.workspace }}\${{ env.INSTALL_DIR }}\"
+      - name: Install OpenSSL via Choco
+        shell: pwsh
+        run: choco install openssl -y
+
+
 
       - name: Set short version
         shell: bash
