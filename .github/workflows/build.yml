@@ -31,11 +31,9 @@ jobs:
         uses: msys2/setup-msys2@v2
         with:
           msystem: mingw32
-          pacboy: openssl:p
-
-
-
-
+          pacboy: >- 
+            openssl:p
+            zlib:i686
 
 
       - name: Verify MinGW Installation
