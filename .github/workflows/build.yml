@@ -65,7 +65,7 @@ jobs:
 
       - name: Install Qt
         if: runner.os != 'Linux' 
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v4
         with:
           version: ${{ matrix.qt_version }}
           host: ${{ matrix.qt_host }}
