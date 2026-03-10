@@ -67,13 +67,13 @@ jobs:
 
       - name: Cache Qt
         id: cache-qt
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: "${{ github.workspace }}/Qt/"
           key: ${{ runner.os }}-${{ matrix.qt_version }}-${{ matrix.qt_arch }}-qt_cache
 
       - name: Install Qt
-        if: runner.os != 'Linux' || matrix.app_image == true
+        if: runner.os != 'Linux' 
         uses: jurplel/install-qt-action@v2
         with:
           version: ${{ matrix.qt_version }}
