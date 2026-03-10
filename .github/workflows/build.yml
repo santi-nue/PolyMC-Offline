@@ -65,12 +65,7 @@ jobs:
         with:
           version: "17"
 
-      - name: Cache Qt
-        id: cache-qt
-        uses: actions/cache@v3
-        with:
-          path: "${{ github.workspace }}/Qt/"
-          key: ${{ runner.os }}-${{ matrix.qt_version }}-${{ matrix.qt_arch }}-qt_cache
+
 
       - name: Install Qt
         if: runner.os != 'Linux' 
@@ -79,7 +74,6 @@ jobs:
           version: ${{ matrix.qt_version }}
           host: ${{ matrix.qt_host }}
           arch: ${{ matrix.qt_arch }}
-          cached: ${{ steps.cache-qt.outputs.cache-hit }}
           dir: "${{ github.workspace }}/Qt/"
 
 
@@ -94,7 +88,7 @@ jobs:
       - name: Configure CMake
         if: runner.os != 'Linux'
         run: |
-          cmake -S . -B ${{ env.BUILD_DIR }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DCMAKE_BUILD_TYPE=${{ inputs.build_type }} -G Ninja
+          cmake -S . -B ${{ env.BUILD_DIR }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DCMAKE_BUILD_TYPE=Release -G Ninja
 
 
       - name: Build
@@ -123,7 +117,7 @@ jobs:
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v4
         with:
-          name: PolyMC-${{ runner.os }}-${{ inputs.build_type }}
+          name: PolyMC-${{ runner.os }}-Release
           path: ${{ env.INSTALL_DIR }}/**
 
 
