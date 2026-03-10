@@ -33,7 +33,7 @@ jobs:
           msystem: mingw32
           pacboy: >- 
             openssl:p
-            zlib:i686
+            zlib:i
 
 
       - name: Verify MinGW Installation
