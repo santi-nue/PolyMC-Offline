@@ -14,24 +14,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-20.04
-            qt_version: 5.12.8
-            qt_host: linux
 
-          - os: ubuntu-20.04
-            qt_version: 5.15.2
-            qt_host: linux
-            app_image: true
 
           - os: windows-2022
             qt_version: 5.15.2
             qt_host: windows
             qt_arch: win32_mingw81
 
-          - os: macos-11
-            qt_version: 5.12.12
-            qt_host: mac
-            macosx_deployment_target: 10.12
+
 
     runs-on: ${{ matrix.os }}
 
