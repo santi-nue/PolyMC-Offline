@@ -260,6 +260,16 @@ endif()
 include(ExternalProject)
 set_directory_properties(PROPERTIES EP_BASE External)
 
+
+
+set(ZLIB_ROOT /mingw32)
+set(CMAKE_FIND_ROOT_PATH /mingw32)
+set(CMAKE_PREFIX_PATH /mingw32)
+
+
+
+
+
 option(NBT_BUILD_SHARED "Build NBT shared library" OFF)
 option(NBT_USE_ZLIB "Build NBT library with zlib support" OFF)
 
