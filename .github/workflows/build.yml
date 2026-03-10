@@ -33,6 +33,14 @@ jobs:
         with:
           platform: x86
 
+
+      - name: Verify MinGW Installation
+        run: |
+          echo "PATH=$PATH"
+          where cc || true
+          cc --version || true
+
+
       - name: Install 32bit zlib via Strawberry on Windows
         if: runner.os == 'Windows'
         run: |
