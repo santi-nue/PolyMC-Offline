@@ -121,7 +121,7 @@ jobs:
 
       - name: Upload package for Windows
         if: runner.os == 'Windows'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: PolyMC-${{ runner.os }}-${{ inputs.build_type }}
           path: ${{ env.INSTALL_DIR }}/**
