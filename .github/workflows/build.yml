@@ -27,11 +27,15 @@ jobs:
       BUILD_DIR: "build"
 
     steps:
-      - name: Install 32bit mingw on Windows
-        if: runner.os == 'Windows'
-        uses: egor-tensin/setup-mingw@v2
+      - name:  Install 32bit mingw on Windows
+        uses: msys2/setup-msys2@v2
         with:
-          platform: x86
+          msystem: mingw32
+          pacboy: openssl:p
+
+
+
+
 
 
       - name: Verify MinGW Installation
@@ -52,9 +56,9 @@ jobs:
           submodules: "true"
 
       # We need to do this here because it inexplicably fails if we split the step
-      - name: Install OpenSSL via Choco
-        shell: pwsh
-        run: choco install openssl -y
+      #- name: Install OpenSSL via Choco
+      #  shell: pwsh
+      #  run: choco install openssl -y
 
 
 
