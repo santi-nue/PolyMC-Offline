@@ -262,6 +262,21 @@ set_directory_properties(PROPERTIES EP_BASE External)
 
 option(NBT_BUILD_SHARED "Build NBT shared library" OFF)
 option(NBT_USE_ZLIB "Build NBT library with zlib support" OFF)
+
+if(NBT_USE_ZLIB)
+    # Help CMake find MSYS2 MinGW32 zlib
+    set(ZLIB_ROOT "/mingw32")
+    set(CMAKE_FIND_ROOT_PATH "/mingw32")
+    
+    find_package(ZLIB REQUIRED)
+    
+    # Assuming NBT is your library target
+    target_link_libraries(NBT ZLIB::ZLIB)
+    target_compile_definitions(NBT PRIVATE NBT_USE_ZLIB=1)
+endif()
+
+
+
 option(NBT_BUILD_TESTS "Build NBT library tests" OFF) #FIXME: fix unit tests.
 add_subdirectory(libraries/libnbtplusplus)
 
